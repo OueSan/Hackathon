@@ -28,8 +28,8 @@ class PlantingAssistant:
         if ph_level < 6.0:
             return (
                 "O pH está baixo. Considere adicionar materiais naturais como calcário agrícola, "
-                "cinzas de madeira ou conchas moídas para aumentar o pH. Certifique-se de testar o solo regularmente "
-                "e adicionar pequenas quantidades por vez, seguindo as recomendações naturais."
+                "cinzas de madeira ou conchas moídas para aumentar o pH. Teste o solo regularmente, para monitorar os níveis de pH e "
+                "ajuste conforme necessário."
             )
         elif ph_level > 7.0:
             return (
