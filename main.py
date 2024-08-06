@@ -31,9 +31,12 @@ class PlantingAssistant:
         )
 
     def get_weather(self, city):
-        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={self.api_key}&units=metric"
+        url = f"api.openweathermap.org/data/2.5/weather?q=London,uk&APPID={api_key}"
         response = requests.get(url)
         data = response.json()
+
+        # Adicione esta linha para verificar a resposta da API
+        print(data)
 
         if response.status_code == 200:
             weather = data['weather'][0]['description']
@@ -41,7 +44,7 @@ class PlantingAssistant:
             humidity = data['main']['humidity']
             return f"Clima atual em {city}: {weather}, Temperatura: {temp}°C, Umidade: {humidity}%"
         else:
-            return "Não foi possível obter os dados climáticos. Verifique o nome da cidade e tente novamente."
+            return f"Não foi possível obter os dados climáticos. Verifique o nome da cidade e tente novamente. Erro: {data.get('message', 'Desconhecido')}"
 
     def can_plant(self, temp, weather):
         if temp < 10 or temp > 30:
@@ -108,7 +111,7 @@ class PlantingApp(tk.Tk):
         self.ph_result_label.config(text=advice)
 
 if __name__ == "__main__":
-    api_key = "4fd82e9b5bf7a5cb4d92c1ea5ecd4db1"  # Substitua pela sua chave de API
+    api_key = "96b7d7524b7a7571fe675adc64ac39a0"  # Substitua pela sua chave de API
     assistant = PlantingAssistant(api_key)
     app = PlantingApp(assistant)
     app.mainloop()
